@@ -86,6 +86,36 @@ namespace TrebolAcademy.Migrations
 
                     b.ToTable("Solicitude");
                 });
+
+            modelBuilder.Entity<Grimorio>()
+                .ToTable("Grimory");
+            modelBuilder.Entity<Grimorio>()
+                .Property(s => s.nameGrimoire)
+                .IsRequired(false);
+
+            modelBuilder.Entity<Grimorio>()
+                .HasData(
+                    new Grimorio
+                    {
+                        nameGrimoire = "Sinceridad"
+                    },
+                    new Grimorio
+                    {
+                        nameGrimoire = "Esperanza"
+                    },
+                    new Grimorio
+                    {
+                        nameGrimoire = "Amor"
+                    },
+                    new Grimorio
+                    {
+                        nameGrimoire = "Buena Fortuna"
+                    },
+                    new Grimorio
+                    {
+                        nameGrimoire = "Desesperación"
+                    }
+                );
 #pragma warning restore 612, 618
         }
     }

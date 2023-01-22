@@ -77,7 +77,7 @@ namespace TrebolAcademy.Controllers
             solicitude.age = solicitud.age;
             solicitude.afinity = solicitud.afinity;
             solicitude.idGrimorio = 0;
-            solicitude.Grimorio = "Pendiente";
+            solicitude.Grimorio = "";
             solicitude.idStatus = 1;
             solicitude.status = "Pendiente";
             solicitude.title = "";

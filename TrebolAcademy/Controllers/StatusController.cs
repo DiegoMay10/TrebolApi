@@ -31,40 +31,47 @@ namespace TrebolAcademy.Controllers
                 case 1:
                     todo.idStatus = idStatus;
                     todo.status = "Pendiente";
+                    todo.title = "";
+                    todo.idGrimorio = 0;
+                    todo.Grimorio = "";
                     break;
                 case 2:
                     todo.idStatus = idStatus;
                     todo.status = "Aprobado";
-
+                    
                     Random r = new Random();
                     int portada = r.Next(1, 5);
-                    var grimorio = await _dbContext.Grimory.FindAsync(portada);
                     switch (portada)
                     {
                         case 1:
                             todo.title = "Trébol de 1 hoja";
+                            var grimorio = await _dbContext.Grimory.Where(i => i.nameGrimoire.ToLower() == "sinceridad").FirstOrDefaultAsync();
                             todo.idGrimorio = grimorio.Id;
                             todo.Grimorio = grimorio.nameGrimoire;
                             break;
                         case 2:
                             todo.title = "Trébol de 2 hojas";
-                            todo.idGrimorio = grimorio.Id;
-                            todo.Grimorio = grimorio.nameGrimoire;
+                            var grimorio2 = await _dbContext.Grimory.Where(i => i.nameGrimoire.ToLower() == "esperanza").FirstOrDefaultAsync();
+                            todo.idGrimorio = grimorio2.Id;
+                            todo.Grimorio = grimorio2.nameGrimoire;
                             break;
                         case 3:
                             todo.title = "Trébol de 3 hojas";
-                            todo.idGrimorio = grimorio.Id;
-                            todo.Grimorio = grimorio.nameGrimoire;
+                            var grimorio3 = await _dbContext.Grimory.Where(i => i.nameGrimoire.ToLower() == "amor").FirstOrDefaultAsync();
+                            todo.idGrimorio = grimorio3.Id;
+                            todo.Grimorio = grimorio3.nameGrimoire;
                             break;
                         case 4:
                             todo.title = "Trébol de 4 hojas";
-                            todo.idGrimorio = grimorio.Id;
-                            todo.Grimorio = grimorio.nameGrimoire;
+                            var grimorio4 = await _dbContext.Grimory.Where(i => i.nameGrimoire.ToLower() == "buena fortuna").FirstOrDefaultAsync();
+                            todo.idGrimorio = grimorio4.Id;
+                            todo.Grimorio = grimorio4.nameGrimoire;
                             break;
                         case 5:
                             todo.title = "Trébol de 5 hojas";
-                            todo.idGrimorio = grimorio.Id;
-                            todo.Grimorio = grimorio.nameGrimoire;
+                            var grimorio5 = await _dbContext.Grimory.Where(i => i.nameGrimoire.ToLower() == "desesperación").FirstOrDefaultAsync();
+                            todo.idGrimorio = grimorio5.Id;
+                            todo.Grimorio = grimorio5.nameGrimoire;
                             break;
                         default:
                             return BadRequest("No se encontro grimorio con dicha portada.");
@@ -74,6 +81,9 @@ namespace TrebolAcademy.Controllers
                 case 3:
                     todo.idStatus = idStatus;
                     todo.status = "Rechazado";
+                    todo.title = "";
+                    todo.idGrimorio = 0;
+                    todo.Grimorio = "";
                     break;
             }
 

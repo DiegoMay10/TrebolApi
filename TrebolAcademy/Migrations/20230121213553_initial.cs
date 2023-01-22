@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
+using TrebolAcademy.Models;
 
 #nullable disable
 
@@ -45,6 +47,7 @@ namespace TrebolAcademy.Migrations
                     table.PrimaryKey("PK_Solicitude", x => x.Id);
                 });
         }
+        
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -55,5 +58,8 @@ namespace TrebolAcademy.Migrations
             migrationBuilder.DropTable(
                 name: "Solicitude");
         }
+
+        
     }
+    
 }
