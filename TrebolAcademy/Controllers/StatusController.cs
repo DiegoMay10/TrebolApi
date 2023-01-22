@@ -85,6 +85,9 @@ namespace TrebolAcademy.Controllers
                     todo.idGrimorio = 0;
                     todo.Grimorio = "";
                     break;
+                default:
+                    return BadRequest("No se encontró ningun estatus con dicho ID.");
+                    break;
             }
 
             try
