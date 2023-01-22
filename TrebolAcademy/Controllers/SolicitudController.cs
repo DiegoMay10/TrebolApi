@@ -138,7 +138,7 @@ namespace TrebolAcademy.Controllers
                     throw;
                 }
             }
-            return NoContent();
+            return Ok(solicitudes);
         }
 
         //PUT Solicitud
@@ -165,7 +165,7 @@ namespace TrebolAcademy.Controllers
 
             _dbContext.Solicitude.Remove(solicitude);
             await _dbContext.SaveChangesAsync();
-            return NoContent();
+            return Ok("Elemento eliminado con éxito");
         }
     }
 }

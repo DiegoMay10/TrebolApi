@@ -45,8 +45,14 @@ namespace TrebolAcademy.Controllers
 
         //POST GRIMORY 
         [HttpPost]
-        public async Task<ActionResult<Grimorio>> PostGrimory(Grimorio grimorio)
+        public async Task<ActionResult<Grimorio>> PostGrimory(string grimorioName)
         {
+            if(grimorioName== null)
+            {
+                return NotFound();
+            }
+            Grimorio grimorio = new Grimorio();
+            grimorio.nameGrimoire = grimorioName;
             _dbContext.Grimory.Add(grimorio);
             await _dbContext.SaveChangesAsync();
             return CreatedAtAction(nameof(GetGrimory), new { id = grimorio.Id }, grimorio);
@@ -54,13 +60,15 @@ namespace TrebolAcademy.Controllers
 
         //PUT GRIMORY
         [HttpPut("{Id}")]
-        public async Task<ActionResult> PutGrimory(int Id, Grimorio grimorio)
+        public async Task<ActionResult> PutGrimory(int Id, string grimorioName)
         {
-            if (Id != grimorio.Id)
+            var grimorios = await _dbContext.Grimory.FindAsync(Id);
+            if (grimorios == null)
             {
                 return BadRequest();
             }
-            _dbContext.Entry(grimorio).State= EntityState.Modified;
+            grimorios.nameGrimoire = grimorioName;
+            _dbContext.Grimory.Update(grimorios);
 
             try
             {
@@ -77,7 +85,7 @@ namespace TrebolAcademy.Controllers
                     throw;
                 }
             }
-            return NoContent();
+            return Ok(grimorios);
         }
         private bool GrimoryExist(long id)
         {
@@ -101,7 +109,7 @@ namespace TrebolAcademy.Controllers
 
             _dbContext.Grimory.Remove(grimory);
             await _dbContext.SaveChangesAsync();
-            return NoContent();
+            return Ok("Elemento eliminado con éxito");
         }
     }
 }

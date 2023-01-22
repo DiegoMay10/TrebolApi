@@ -100,5 +100,25 @@ namespace TrebolAcademy.Controllers
             return (_dbContext.Solicitude?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
+
+        //GET solicitud por Idgrimory
+        [HttpGet("{idGrimorio}")]
+        public async Task<ActionResult<Solicitud>> GetSolicitudeGremory(int idGrimorio)
+        {
+            if (_dbContext.Solicitude == null)
+            {
+                return NotFound();
+            }
+
+            //var solicitud = await _dbContext.Solicitude.FirstOrDefaultAsync(i=> i.idGrimorio == idGrimorio);
+            var solicitud = await _dbContext.Solicitude.Where(i=> i.idGrimorio == idGrimorio).ToListAsync();
+
+            if (solicitud == null)
+            {
+                return NotFound("No se encontro registros con ese grimorio asignado");
+            }
+            return Ok(solicitud);
+        }
+
     }
 }
